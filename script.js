@@ -47,7 +47,7 @@ function displayWeatherData(data) {
     document.getElementById('low_temp').textContent = weather['Low Temperature(C)'];
     document.getElementById('wind_speed').textContent = weather['Wind Speed(mph)'];
     document.getElementById('humidity').textContent = weather['Humidity(%)'];
-    document.getElementById('pressure').textContent = weather['Pressure(mb)'];
+   
     document.getElementById('rain_total').textContent = weather['Rain Total (mm)'];
     document.getElementById('wind_gust').textContent = weather['Wind Gust(mph)'];
     document.getElementById('pollen').textContent = weather['Pollen'];
