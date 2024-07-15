@@ -52,40 +52,95 @@ function displayWeatherData(data) {
     document.getElementById('weather_description').textContent = weather['Weather Description'];
     document.getElementById('sunrise').textContent = weather['Sunrise'];
     document.getElementById('sunset').textContent = weather['Sunset'];
-    document.getElementById('moon_phase').textContent = weather['Moon Phase'];
     document.getElementById('chance_of_rain').textContent = weather['Chance of Rain(%)'];
 
     // Handle Pollen
     const pollenValue = weather['Pollen'];
-    if (pollenValue === 'L') {
-      document.getElementById('pollen').src = 'https://i.imgur.com/2LQs8o4.png';
-    } else if (pollenValue === 'M') {
-      document.getElementById('pollen').src = 'https://i.imgur.com/8TtKLIi.png';
-    } else if (pollenValue === 'H') {
-      document.getElementById('pollen').src = 'https://i.imgur.com/RIPYD1d.png';
-    } else {
-      // Handle unknown value if needed
+    const pollenImg = document.getElementById('pollen');
+    switch (pollenValue) {
+      case 'L':
+        pollenImg.src = 'https://i.imgur.com/2LQs8o4.png';
+        break;
+      case 'M':
+        pollenImg.src = 'https://i.imgur.com/8TtKLIi.png';
+        break;
+      case 'H':
+        pollenImg.src = 'https://i.imgur.com/RIPYD1d.png';
+        break;
+      default:
+        // Handle unknown value if needed
+        pollenImg.src = ''; // Set to an empty image or default image URL
     }
 
     // Handle UV
     const uvValue = weather['UV'];
-    if (uvValue === 'L') {
-      document.getElementById('uv').src = 'https://i.imgur.com/2LQs8o4.png';
-    } else if (uvValue === 'M') {
-      document.getElementById('uv').src = 'https://i.imgur.com/8TtKLIi.png';
-    } else if (uvValue === 'H') {
-      document.getElementById('uv').src = 'https://i.imgur.com/RIPYD1d.png';
-    } else {
-      // Handle unknown value if needed
+    const uvImg = document.getElementById('uv');
+    switch (uvValue) {
+      case 'L':
+        uvImg.src = 'https://i.imgur.com/2LQs8o4.png';
+        break;
+      case 'M':
+        uvImg.src = 'https://i.imgur.com/8TtKLIi.png';
+        break;
+      case 'H':
+        uvImg.src = 'https://i.imgur.com/RIPYD1d.png';
+        break;
+      default:
+        // Handle unknown value if needed
+        uvImg.src = ''; // Set to an empty image or default image URL
     }
 
     // Handle special weather description
     const weatherDesc = weather['Weather Description'];
+    const weatherImg = document.getElementById('weather_img');
     if (weatherDesc === 'Thundery showers and a gentle breeze') {
-      document.getElementById('weather_img').src = 'https://i.imgur.com/hdhpIDG.png';
+      weatherImg.src = 'https://i.imgur.com/hdhpIDG.png';
     } else {
       // Set default image or handle other cases
-      document.getElementById('weather_img').src = ''; // Set to an empty image or default image URL
+      weatherImg.src = ''; // Set to an empty image or default image URL
+    }
+
+    // Handle Moon Phase
+    const moonPhase = weather['Moon Phase'];
+    const moonImg = document.getElementById('moon_phase_img');
+    const moonText = document.getElementById('moon_phase_text'); // Text placeholder
+    switch (moonPhase) {
+      case 'First Quarter':
+        moonImg.src = 'https://i.imgur.com/ASpKviw.png';
+        moonText.textContent = moonPhase; // Display moon phase text
+        break;
+      case 'Last Quarter':
+        moonImg.src = 'https://i.imgur.com/p40sPKr.png';
+        moonText.textContent = moonPhase; // Display moon phase text
+        break;
+      case 'Waxing Gibbous':
+        moonImg.src = 'https://i.imgur.com/Cd4kJVL.png';
+        moonText.textContent = moonPhase; // Display moon phase text
+        break;
+      case 'Waning Gibbous':
+        moonImg.src = 'https://i.imgur.com/gFFcmhX.png';
+        moonText.textContent = moonPhase; // Display moon phase text
+        break;
+      case 'Full Moon':
+        moonImg.src = 'https://i.imgur.com/rUiGmcq.png';
+        moonText.textContent = moonPhase; // Display moon phase text
+        break;
+      case 'New Moon':
+        moonImg.src = 'https://i.imgur.com/GaXtq4q.png';
+        moonText.textContent = moonPhase; // Display moon phase text
+        break;
+      case 'Waxing Crescent':
+        moonImg.src = 'https://i.imgur.com/6zRlFSc.png';
+        moonText.textContent = moonPhase; // Display moon phase text
+        break;
+      case 'Waning Crescent':
+        moonImg.src = 'https://i.imgur.com/Pgf6hM1.png';
+        moonText.textContent = moonPhase; // Display moon phase text
+        break;
+      default:
+        // Handle unknown value if needed
+        moonImg.src = ''; // Set to an empty image or default image URL
+        moonText.textContent = moonPhase; // Display moon phase text or clear if no moon phase
     }
 
   } else {
