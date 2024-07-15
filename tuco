@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Data</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file -->
+  <style>
+    /* Set background image and cover entire screen */
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url(https://i.imgur.com/FwbtNFw.png);
+      background-size: cover;
+      background-position: center;
+    }
+    
+    /* Style for the weather data list */
+    ul {
+      margin: 0;
+      padding: 20px 0; /* Add padding to separate content from edges */
+      list-style: none;
+    }
+    
+    ul li {
+      position: relative;
+      padding-left: 20px; /* Adjust space for marker */
+      margin-bottom: 10px; /* Add space between list items */
+      color: black; /* Text color set to black */
+    }
+    
+    /* Animation class (add your animation styles here) */
+    .animate {
+      /* Example animation */
+      animation: fadeIn 1s ease-out;
+    }
+    
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1 class="animate">Weather Conditions</h1> <!-- Apply animation class here -->
+  <ul id="weather-list" class="animate">
+    <li class="location"><strong>Location:</strong> <span id="location"></span></li>
+    <li class="date"><strong>Date:</strong> <span id="date"></span></li>
+    <li class="weather-description"><strong>Weather Description:</strong> <span id="weather_description"></span></li>
+    <li class="high-temp"><strong>High Temperature(C):</strong> <span id="high_temp"></span>°C</li>
+    <li class="low-temp"><strong>Low Temperature(C):</strong> <span id="low_temp"></span>°C</li>
+    <li class="wind-speed"><strong>Wind Speed(mph):</strong> <span id="wind_speed"></span> mph</li>
+    <li class="wind-gust"><strong>Wind Gust(mph):</strong> <span id="wind_gust"></span> mph</li>
+    <li class="chance-of-rain"><strong>Chance of Rain(%):</strong> <span id="chance_of_rain"></span>%</li>
+    <li class="rain-total"><strong>Rain Total (mm):</strong> <span id="rain_total"></span> mm</li>
+    <li class="humidity"><strong>Humidity(%):</strong> <span id="humidity"></span>%</li>
+    <li class="pollen"><strong>Pollen:</strong> <span id="pollen"></span></li>
+    <li class="uv"><strong>UV:</strong> <span id="uv"></span></li>
+    <li class="sunrise"><strong>Sunrise:</strong> <span id="sunrise"></span></li>
+    <li class="sunset"><strong>Sunset:</strong> <span id="sunset"></span></li>
+    <li class="moon-phase"><strong>Moon Phase:</strong> <span id="moon_phase"></span></li>
+    <li class="pressure"><strong>Pressure(mb):</strong> <span id="pressure"></span> mb</li>
+  </ul>
+
+  <p id="no-data" style="display: none;">No weather data available.</p>
+
+  <script>
+    // Function to fetch weather data from CSV URL
+    async function fetchWeatherData() {
+      const csvUrl = 'https://docs.google.com/spreadsheets/d/1Kc82bLJaPwsLR55owMorJKZDjD-PFBOdsqS4lylfTs4/export?format=csv';
+
+      try {
+        const response = await fetch(csvUrl);
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.statusText}`);
+        }
+        const data = await response.text();
+        return parseCSV(data); // Parse CSV data into JavaScript objects
+      } catch (error) {
+        console.error('Error fetching or parsing CSV:', error);
+        return null; // Return null to handle the error case
+      }
+    }
+
+    // Function to parse CSV data into an array of objects
+    function parseCSV(data) {
+      const rows = data.trim().split('\n').map(row => row.split(','));
+      const headers = rows[0];
+      const records = rows.slice(1).map(row => {
+        let record = {};
+        row.forEach((value, index) => {
+          // Clean up extra whitespace and handle special characters in keys
+          const key = headers[index].trim();
+          record[key] = value.trim();
+        });
+        return record;
+      });
+      return records;
+    }
+
+    // Function to display weather data on the webpage
+    function displayWeatherData(data) {
+      const noDataMsg = document.getElementById('no-data');
+
+      // Hide no data message
+      noDataMsg.style.display = 'none';
+
+      // Display weather data
+      if (data && data.length > 0) {
+        const weather = data[0]; // Assuming only one record is fetched
+        document.getElementById('location').textContent = weather['Location'];
+        document.getElementById('date').textContent = weather['Date'];
+        document.getElementById('high_temp').textContent = weather['High Temperature(C)'];
+        document.getElementById('low_temp').textContent = weather['Low Temperature(C)'];
+        document.getElementById('wind_speed').textContent = weather['Wind Speed(mph)'];
+        document.getElementById('humidity').textContent = weather['Humidity(%)'];
+        document.getElementById('pressure').textContent = weather['Pressure(mb)'];
+        document.getElementById('rain_total').textContent = weather['Rain Total (mm)'];
+        document.getElementById('wind_gust').textContent = weather['Wind Gust(mph)'];
+        document.getElementById('pollen').textContent = weather['Pollen'];
+        document.getElementById('uv').textContent = weather['UV'];
+        document.getElementById('sunrise').textContent = weather['Sunrise'];
+        document.getElementById('sunset').textContent = weather['Sunset'];
+        document.getElementById('weather_description').textContent = weather['Weather Description'];
+        document.getElementById('moon_phase').textContent = weather['Moon Phase'];
+        document.getElementById('chance_of_rain').textContent = weather['Chance of Rain(%)'];
+      } else {
+        noDataMsg.style.display = 'block';
+      }
+    }
+
+    // Function to fetch CSV data and display it on the webpage
+    async function fetchAndDisplayData() {
+      try {
+        const data = await fetchWeatherData();
+        if (data !== null) {
+          console.log('Fetched CSV Data:', data);
+          // Wait 5 seconds before displaying the data
+          setTimeout(() => {
+            displayWeatherData(data);
+          }, 5000); // 5 seconds delay
+        } else {
+          console.log('No data fetched or parsed');
+        }
+      } catch (error) {
+        console.error('Error fetching or parsing CSV:', error);
+      }
+    }
+
+    // Initial fetch and display
+    fetchAndDisplayData();
+
+    // Fetch and display data every 10 seconds (example)
+    setInterval(fetchAndDisplayData, 10000); // 10 seconds interval
+  </script>
+</body>
+</html>
