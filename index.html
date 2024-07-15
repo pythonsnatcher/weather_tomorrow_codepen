@@ -9,28 +9,31 @@
 <body>
   <h1 class="animate">Weather Conditions</h1> <!-- Apply animation class here -->
   <ul id="weather-list" class="animate">
-    <li class="location"><strong>Location:</strong> <span id="location"></span></li>
-    <li class="date"><strong>Date:</strong> <span id="date"></span></li>
-    <li class="weather-description"><strong>Weather Description:</strong> <span id="weather_description"></span></li>
+    <li class="location"> <span id="location"></span></li>
+    <li class="date"><span id="date"></span></li>
+    <li class="weather-description"><img id="weather_img" src=""> <span id="weather_description"></span></li>
 
     <li class="temperature">
-  <img src="https://i.imgur.com/tMx51iT.png" alt="Temperature Icon">
-  <span id="high_temp"></span>°C 
-  &uarr; 
-  <span id="low_temp"></span>°C &darr;
-</li>
-
+      <img src="https://i.imgur.com/tMx51iT.png" alt="Temperature Icon">
+      <span id="high_temp"></span>°C 
+      &uarr; 
+      <span id="low_temp"></span>°C &darr;
+    </li>
 
     <li class="wind-speed"><img src='https://i.imgur.com/yEAV6ec.png'> <span id="wind_speed"></span> <span id="wind_gust"></span> mph</li>
-    
-
 
     <li class="chance-of-rain"><img src='https://i.imgur.com/Ig2Kme1.png'> <span id="chance_of_rain"></span>% <span id="rain_total"></span> mm <span id="humidity"></span>%</li>
 
-    <li class="pollen"><strong>Pollen:</strong> <span id="pollen"></span></li>
-    <li class="uv"><strong>UV:</strong> <span id="uv"></span></li>
-    <li class="sunrise"><img src="https://i.imgur.com/5Vs0XBl.png" alt="Sunrise Icon">  <span id="sunrise"></span>   <span id="sunset"></span>  <img src="https://i.imgur.com/gfH65fP.png" alt="Sunrise Icon">  </li>
-    
+    <li class="pollen"><strong>Pollen:</strong> <img id="pollen" src="" alt="Pollen Image"></li>
+    <li class="uv"><strong>UV:</strong> <img id="uv" src="" alt="UV Image"></li>
+
+    <li class="sunrise">
+      <img src="https://i.imgur.com/5Vs0XBl.png" alt="Sunrise Icon">  
+      <span id="sunrise"></span>   
+      <span id="sunset"></span>  
+      <img src="https://i.imgur.com/gfH65fP.png" alt="Sunset Icon">  
+    </li>
+
     <li class="moon-phase"><strong>Moon Phase:</strong> <span id="moon_phase"></span></li>
     
   </ul>
