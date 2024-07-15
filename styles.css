@@ -5,8 +5,12 @@ body {
   background-image: url(https://i.imgur.com/FwbtNFw.png);
   background-size: cover;
   background-position: center;
+  font-family: Arial, sans-serif; /* Example font stack */
+  color: #333; /* Example text color */
 }
-
+div.container {
+  text-align: center;
+}
 /* Style for the weather data list */
 ul {
   margin: 0;
@@ -18,11 +22,18 @@ ul li {
   position: relative;
   padding-left: 20px; /* Adjust space for marker */
   margin-bottom: 10px; /* Add space between list items */
-  color: black; /* Text color set to black */
-  transition: opacity 1s; /* Smooth transition for opacity */
+  color: #333; /* Text color set to black */
+  transition: opacity 0.3s, background-color 0.3s; /* Smooth transitions */
+  font-size: 1.2em; /* Example font size */
+  font-weight: bold; /* Example font weight */
 }
 
-/* Animation class (add your animation styles here) */
+ul li:hover {
+  background-color: #f0f0f0; /* Light gray background on hover */
+  color: #000; /* Change text color on hover */
+}
+
+/* Animation class for list items */
 .animate {
   /* Example animation */
   animation: fadeIn 1s ease-out;
@@ -41,4 +52,26 @@ ul li {
 ul li img {
   width: 50px; /* Set width to 50 pixels */
   height: 50px; /* Set height to 50 pixels */
+}
+
+/* Style for the header */
+h1.animate {
+  text-align: center; /* Center text horizontally */
+  font-size: 3em; /* Larger font size */
+  margin-top: 50px; /* Increased top margin */
+  padding: 20px; /* Padding around text */
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+  background-image: linear-gradient(45deg, #f3f3f3, #e0e0e0); /* Gradient background */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3); /* Text shadow for better contrast */
+}
+
+/* Additional styling for mobile */
+@media (max-width: 600px) {
+  h1.animate {
+    font-size: 2em; /* Decrease font size for smaller screens */
+    margin-top: 30px; /* Adjusted top margin */
+    padding: 15px; /* Reduced padding */
+  }
 }
