@@ -1,4 +1,4 @@
-// Function to fetch weather data from your CSV or other source
+// Function to fetch weather data from CSV URL
 async function fetchWeatherData() {
   const csvUrl = 'https://docs.google.com/spreadsheets/d/1Kc82bLJaPwsLR55owMorJKZDjD-PFBOdsqS4lylfTs4/export?format=csv';
 
@@ -33,11 +33,9 @@ function parseCSV(data) {
 
 // Function to display weather data on the webpage
 function displayWeatherData(data) {
-  const weatherList = document.getElementById('weather-list');
   const noDataMsg = document.getElementById('no-data');
 
-  // Clear existing data
-  weatherList.innerHTML = '';
+  // Hide no data message
   noDataMsg.style.display = 'none';
 
   // Display weather data
@@ -79,8 +77,27 @@ async function fetchAndDisplayData() {
   }
 }
 
+// Function to rotate the list items with fade-out and fade-in effects
+function rotateListItems() {
+  const list = document.getElementById('weather-list');
+  const firstItem = list.firstElementChild;
+
+  firstItem.classList.add('fade-out');
+  setTimeout(() => {
+    list.appendChild(firstItem);
+    firstItem.classList.remove('fade-out');
+    firstItem.classList.add('animate');
+    setTimeout(() => {
+      firstItem.classList.remove('animate');
+    }, 1000); // Matches the transition duration
+  }, 1000); // Matches the transition duration
+}
+
 // Initial fetch and display
 fetchAndDisplayData();
 
 // Fetch and display data every 10 seconds (example)
 setInterval(fetchAndDisplayData, 10000); // 10 seconds interval
+
+// Rotate list items every 10 seconds
+setInterval(rotateListItems, 10000); // 10 seconds interval
