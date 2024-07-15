@@ -47,22 +47,53 @@ function displayWeatherData(data) {
     document.getElementById('low_temp').textContent = weather['Low Temperature(C)'];
     document.getElementById('wind_speed').textContent = weather['Wind Speed(mph)'];
     document.getElementById('humidity').textContent = weather['Humidity(%)'];
-   
     document.getElementById('rain_total').textContent = weather['Rain Total (mm)'];
     document.getElementById('wind_gust').textContent = weather['Wind Gust(mph)'];
-    document.getElementById('pollen').textContent = weather['Pollen'];
-    document.getElementById('uv').textContent = weather['UV'];
+    document.getElementById('weather_description').textContent = weather['Weather Description'];
     document.getElementById('sunrise').textContent = weather['Sunrise'];
     document.getElementById('sunset').textContent = weather['Sunset'];
-    document.getElementById('weather_description').textContent = weather['Weather Description'];
     document.getElementById('moon_phase').textContent = weather['Moon Phase'];
     document.getElementById('chance_of_rain').textContent = weather['Chance of Rain(%)'];
+
+    // Handle Pollen
+    const pollenValue = weather['Pollen'];
+    if (pollenValue === 'L') {
+      document.getElementById('pollen').src = 'https://i.imgur.com/2LQs8o4.png';
+    } else if (pollenValue === 'M') {
+      document.getElementById('pollen').src = 'https://i.imgur.com/8TtKLIi.png';
+    } else if (pollenValue === 'H') {
+      document.getElementById('pollen').src = 'https://i.imgur.com/RIPYD1d.png';
+    } else {
+      // Handle unknown value if needed
+    }
+
+    // Handle UV
+    const uvValue = weather['UV'];
+    if (uvValue === 'L') {
+      document.getElementById('uv').src = 'https://i.imgur.com/2LQs8o4.png';
+    } else if (uvValue === 'M') {
+      document.getElementById('uv').src = 'https://i.imgur.com/8TtKLIi.png';
+    } else if (uvValue === 'H') {
+      document.getElementById('uv').src = 'https://i.imgur.com/RIPYD1d.png';
+    } else {
+      // Handle unknown value if needed
+    }
+
+    // Handle special weather description
+    const weatherDesc = weather['Weather Description'];
+    if (weatherDesc === 'Thundery showers and a gentle breeze') {
+      document.getElementById('weather_img').src = 'https://i.imgur.com/hdhpIDG.png';
+    } else {
+      // Set default image or handle other cases
+      document.getElementById('weather_img').src = ''; // Set to an empty image or default image URL
+    }
+
   } else {
     noDataMsg.style.display = 'block';
   }
 }
 
-// Function to fetch CSV data and display it on the webpage
+// Function to fetch CSV data, parse it, and display it on the webpage
 async function fetchAndDisplayData() {
   try {
     const data = await fetchWeatherData();
