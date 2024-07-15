@@ -96,15 +96,16 @@ function displayWeatherData(data) {
     
     // Object mapping weather descriptions to placeholder image URLs
     const weatherImages = {
-      'Sunny intervals and a gentle breeze': 'https://i.imgur.com/placeholder1.png',
-      'Sunny intervals and light winds': 'https://i.imgur.com/placeholder2.png',
-      'Light rain and a gentle breeze': 'https://i.imgur.com/placeholder3.png',
-      'Light rain and a moderate breeze': 'https://i.imgur.com/placeholder4.png',
-      'Light rain showers and a moderate breeze': 'https://i.imgur.com/placeholder5.png',
-      'Light rain showers and a gentle breeze': 'https://i.imgur.com/placeholder6.png',
-      'Thundery showers and a gentle breeze': 'https://i.imgur.com/hdhpIDG.png',
-      'Light cloud and a gentle breeze': 'https://i.imgur.com/placeholder7.png',
-      'Sunny and a gentle breeze': 'https://i.imgur.com/placeholder8.png'
+      'Sunny intervals and a gentle breeze': 'https://i.imgur.com/UcBQXTq.png',
+      'Sunny intervals and light winds': 'https://i.imgur.com/UcBQXTq.png',
+      'Light rain and a gentle breeze': 'https://i.imgur.com/pX968i5.png',
+      'Light rain and a moderate breeze': 'https://i.imgur.com/pX968i5.png',
+      'Light rain showers and a moderate breeze': 'https://i.imgur.com/pX968i5.png',
+      'Light rain showers and a gentle breeze': 'https://i.imgur.com/pX968i5.png',
+      'Thundery showers and a gentle breeze': 'https://i.imgur.com/08Z0Uf1.png',
+      'Light cloud and a gentle breeze': 'https://i.imgur.com/3JUSp0q.png',
+      'Snow': 'https://i.imgur.com/lmtEMRu.png',
+      'Sunny and a gentle breeze': 'https://i.imgur.com/33SrH2A.png'
     };
 
     // Default image URL for weather conditions not found in weatherImages
