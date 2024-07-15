@@ -36,3 +36,9 @@ ul li {
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
+
+/* Limit size of images */
+ul li img {
+  width: 50px; /* Set width to 50 pixels */
+  height: 50px; /* Set height to 50 pixels */
+}
