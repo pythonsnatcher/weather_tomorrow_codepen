@@ -90,14 +90,31 @@ function displayWeatherData(data) {
         uvImg.src = ''; // Set to an empty image or default image URL
     }
 
-    // Handle special weather description
+   // Handle special weather description with placeholder images
     const weatherDesc = weather['Weather Description'];
     const weatherImg = document.getElementById('weather_img');
-    if (weatherDesc === 'Thundery showers and a gentle breeze') {
-      weatherImg.src = 'https://i.imgur.com/hdhpIDG.png';
+    
+    // Object mapping weather descriptions to placeholder image URLs
+    const weatherImages = {
+      'Sunny intervals and a gentle breeze': 'https://i.imgur.com/placeholder1.png',
+      'Sunny intervals and light winds': 'https://i.imgur.com/placeholder2.png',
+      'Light rain and a gentle breeze': 'https://i.imgur.com/placeholder3.png',
+      'Light rain and a moderate breeze': 'https://i.imgur.com/placeholder4.png',
+      'Light rain showers and a moderate breeze': 'https://i.imgur.com/placeholder5.png',
+      'Light rain showers and a gentle breeze': 'https://i.imgur.com/placeholder6.png',
+      'Thundery showers and a gentle breeze': 'https://i.imgur.com/hdhpIDG.png',
+      'Light cloud and a gentle breeze': 'https://i.imgur.com/placeholder7.png',
+      'Sunny and a gentle breeze': 'https://i.imgur.com/placeholder8.png'
+    };
+
+    // Default image URL for weather conditions not found in weatherImages
+    const defaultWeatherImg = 'https://i.imgur.com/default_weather.png';
+
+    // Check if the weather description exists in the map
+    if (weatherDesc in weatherImages) {
+      weatherImg.src = weatherImages[weatherDesc]; // Set the corresponding image URL
     } else {
-      // Set default image or handle other cases
-      weatherImg.src = ''; // Set to an empty image or default image URL
+      weatherImg.src = defaultWeatherImg; // Set default image URL
     }
 
     // Handle Moon Phase
