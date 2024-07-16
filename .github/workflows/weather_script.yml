@@ -3,7 +3,7 @@ name: Run Weather Script
 on:
   push:
     branches:
-      - main  # Replace with your main branch name
+      - main
   schedule:
     - cron: '0 8 * * *'  # Schedule to run every day at 8 AM UTC, adjust as needed
 
@@ -13,12 +13,10 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3  # Updated to v3
+      uses: actions/checkout@v3
 
     - name: Set up Python
-      uses: actions/setup-python@v4  # Updated to v4
-      with:
-        python-version: '3.12'  # Replace with your Python version
+      uses: actions/setup-python@v2  # Updated to v2 for compatibility
 
     - name: Install dependencies
       run: |
@@ -26,12 +24,12 @@ jobs:
         pip install requests lxml gspread oauth2client
 
     - name: Run Python script
-      run: python other/scrape.py  # Replace with your path to scrape.py
+      run: python other/scrape.py
 
     - name: Commit and push if changes
       run: |
         git config --global user.email "github-actions@users.noreply.github.com"
         git config --global user.name "GitHub Actions"
         git add .
-        git commit -m "Update weather data [skip ci]" || echo "No changes to commit"
+        git diff-index --quiet HEAD || git commit -m "Update weather data [skip ci]"
         git push
