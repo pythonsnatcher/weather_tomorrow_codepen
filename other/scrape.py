@@ -7,6 +7,7 @@ from lxml import html
 import csv
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+import os
 
 from gspread.exceptions import APIError
 
@@ -207,7 +208,7 @@ url_weather_com = "https://weather.com/en-GB/weather/tenday/l/4c5ad40da52894d049
 
 combined_weather_data = get_combined_weather_data(url_weather_outlook, url_bbc_weather, url_weather_com)
 
-sheet_url = 'https://docs.google.com/spreadsheets/d/1QrvWcnT55mAl2NVi7rpZbdm9AzCsAvrEYRrgpMQQ-_I/edit?gid=0#gid=0'
+sheet_url = os.getenv('GOOGLE_SHEETS_URL')
 sheet_name = 'Sheet1'
 
 
