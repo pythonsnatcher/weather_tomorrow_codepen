@@ -213,13 +213,13 @@ if combined_weather_data:
     for field in fieldnames:
         print(f"{field}: {combined_weather_data[field]}")
 
-    csv_file_path = "weather_tomorrow.csv"
-    with open(csv_file_path, mode='w', newline='') as file:
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerow(combined_weather_data)
+    # csv_file_path = "weather_tomorrow.csv"
+    # with open(csv_file_path, mode='w', newline='') as file:
+    #     writer = csv.DictWriter(file, fieldnames=fieldnames)
+    #     writer.writeheader()
+    #     writer.writerow(combined_weather_data)
 
-    print(f"\nWeather data has been written to {csv_file_path}")
+    # print(f"\nWeather data has been written to {csv_file_path}")
 
     write_to_google_sheets(combined_weather_data, 'Sheet1')
     print("Weather data has been written to Google Sheets")
