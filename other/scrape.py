@@ -169,41 +169,47 @@ def get_combined_weather_data(url_weather_outlook, url_bbc_weather, url_weather_
 
     return combined_weather_data
 
-def write_to_google_sheets(data, sheet_name):
+
+def write_to_google_sheets(data, sheet_name, sheet_url):
     try:
-        # Authorize without any credentials (assuming the sheet is publicly accessible)
+        # Authorize without credentials assuming public access
         client = gspread.authorize(None)
 
         # Open the Google Sheets document by URL
-        sheet_url = 'https://docs.google.com/spreadsheets/d/1QrvWcnT55mAl2NVi7rpZbdm9AzCsAvrEYRrgpMQQ-_I/edit?gid=0#gid=0'
         sheet = client.open_by_url(sheet_url)
-        
+
         # Select the worksheet by name
         worksheet = sheet.worksheet(sheet_name)
-        
-        # Clear existing content (optional)
+
+        # Clear existing content (if desired)
         worksheet.clear()
 
-        # Write headers
+        # Prepare data to write
         headers = list(data.keys())
+        values = list(data.values())
+
+        # Append headers as the first row
         worksheet.append_row(headers)
 
-        # Write data
-        row_data = list(data.values())
-        worksheet.append_row(row_data)
+        # Append data values as subsequent rows
+        worksheet.append_row(values)
 
-        print(f"Data successfully written to Google Sheets '{sheet_name}'")
+        print(f"Data successfully written to '{sheet_name}' in '{sheet_url}'")
 
     except APIError as e:
         print(f"Error writing to Google Sheets: {e}")
-
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
 
 url_weather_outlook = "https://www.theweatheroutlook.com/forecast/uk/london"
 url_bbc_weather = "https://www.bbc.co.uk/weather/2643743"
-
 url_weather_com = "https://weather.com/en-GB/weather/tenday/l/4c5ad40da52894d049451564c63c55bb65acbafdca5e334eba01d5aaec4983fc"
 
 combined_weather_data = get_combined_weather_data(url_weather_outlook, url_bbc_weather, url_weather_com)
+
+sheet_url = 'https://docs.google.com/spreadsheets/d/1QrvWcnT55mAl2NVi7rpZbdm9AzCsAvrEYRrgpMQQ-_I/edit?gid=0#gid=0'
+sheet_name = 'Sheet1'
+
 
 if combined_weather_data:
     print("Combined Weather Data:")
@@ -223,7 +229,7 @@ if combined_weather_data:
 
     # print(f"\nWeather data has been written to {csv_file_path}")
 
-    write_to_google_sheets(combined_weather_data, 'Sheet1')
+    wwrite_to_google_sheets(combined_weather_data, sheet_name, sheet_url)
     print("Weather data has been written to Google Sheets")
 else:
     print("No weather data available.")
