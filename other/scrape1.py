@@ -169,10 +169,7 @@ def get_combined_weather_data(url_weather_outlook, url_bbc_weather, url_weather_
     return combined_weather_data
 
 def write_to_google_sheets(data, sheet_name):
-    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-
     sheet_url = os.getenv('GOOGLE_SHEETS_URL')
-    # creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
     client = gspread.authorize(None)
     sheet = client.open_by_url(sheet_url)
     worksheet = sheet.worksheet(sheet_name)
@@ -181,6 +178,7 @@ def write_to_google_sheets(data, sheet_name):
     worksheet.append_row(headers)
     row_data = list(data.values())
     worksheet.append_row(row_data)
+
 
 
 url_weather_outlook = "https://www.theweatheroutlook.com/forecast/uk/london"
