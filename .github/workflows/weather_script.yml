@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 1 * * *'  # Schedule to run every day at 8 AM UTC, adjust as needed
+    - cron: '0 1 * * *'  # Schedule to run every day at 1 AM UTC (2 AM BST)
 
 jobs:
   run_script:
@@ -26,4 +26,22 @@ jobs:
     - name: Run Python script
       run: python other/scrape.py
 
-   
+# Allow manual triggering of the workflow
+  manual_trigger:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v2  # Updated to v2 for compatibility
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests lxml gspread oauth2client
+
+    - name: Run Python script
+      run: python other/scrape.py
+
