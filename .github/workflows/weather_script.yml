@@ -1,47 +1,30 @@
 name: Run Weather Script
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    types:
+      - opened
   schedule:
     - cron: '0 1 * * *'  # Schedule to run every day at 1 AM UTC (2 AM BST)
+  workflow_dispatch:  # Allows manual triggering
 
 jobs:
   run_script:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v2  # Updated to v2 for compatibility
+      - name: Set up Python
+        uses: actions/setup-python@v2  # Updated to v2 for compatibility
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests lxml gspread oauth2client
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests lxml gspread oauth2client
 
-    - name: Run Python script
-      run: python other/scrape.py
+      - name: Run Python script
+        run: python other/scrape.py
 
-# Allow manual triggering of the workflow
-  manual_trigger:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch'
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Set up Python
-      uses: actions/setup-python@v2  # Updated to v2 for compatibility
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests lxml gspread oauth2client
-
-    - name: Run Python script
-      run: python other/scrape.py
 
