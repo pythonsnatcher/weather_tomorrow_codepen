@@ -1,5 +1,5 @@
 """
-the json credentials file needs to be locally accessible for this script to function
+the json credentials file needs to be locally accessible for this scipt to function
 """
 
 import requests
