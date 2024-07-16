@@ -214,7 +214,7 @@ if combined_weather_data:
         print(f"{field}: {combined_weather_data[field]}")
 
     
-    print(f"\nWeather data has been written to {csv_file_path}")
+    
 
     write_to_google_sheets(combined_weather_data, 'Sheet1')
     print("Weather data has been written to Google Sheets")
