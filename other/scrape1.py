@@ -172,7 +172,7 @@ def write_to_google_sheets(data, sheet_name):
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 
     sheet_url = os.getenv('GOOGLE_SHEETS_URL')
-    creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+    # creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
     client = gspread.authorize(creds)
     sheet = client.open_by_url(sheet_url)
     worksheet = sheet.worksheet(sheet_name)
