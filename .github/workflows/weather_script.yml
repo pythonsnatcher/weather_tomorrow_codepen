@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 8 * * *'  # Schedule to run every day at 8 AM UTC, adjust as needed
+    - cron: '0 1 * * *'  # Schedule to run every day at 8 AM UTC, adjust as needed
 
 jobs:
   run_script:
