@@ -170,7 +170,8 @@ def get_combined_weather_data(url_weather_outlook, url_bbc_weather, url_weather_
 
 def write_to_google_sheets(data, sheet_name):
     sheet_url = os.getenv('GOOGLE_SHEETS_URL')
-    gc = gspread.service_account()
+    gc = gspread.oauth()
+    gc.login()
     sheet = gc.open_by_url(sheet_url)
     worksheet = sheet.worksheet(sheet_name)
     worksheet.clear()
@@ -178,6 +179,7 @@ def write_to_google_sheets(data, sheet_name):
     worksheet.append_row(headers)
     row_data = list(data.values())
     worksheet.append_row(row_data)
+
 
 
 
