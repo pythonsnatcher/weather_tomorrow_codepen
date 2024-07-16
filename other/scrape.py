@@ -229,7 +229,7 @@ if combined_weather_data:
 
     # print(f"\nWeather data has been written to {csv_file_path}")
 
-    wwrite_to_google_sheets(combined_weather_data, sheet_name, sheet_url)
+    write_to_google_sheets(combined_weather_data, sheet_name, sheet_url)
     print("Weather data has been written to Google Sheets")
 else:
     print("No weather data available.")
