@@ -8,6 +8,8 @@ import csv
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
+from gspread.exceptions import APIError
+
 def weather_com_(url, xpath_expression):
     try:
         response = requests.get(url)
@@ -168,15 +170,13 @@ def get_combined_weather_data(url_weather_outlook, url_bbc_weather, url_weather_
     return combined_weather_data
 
 def write_to_google_sheets(data, sheet_name):
-    # Scope is not needed for publicly accessible spreadsheets
-    # creds_dict is not needed since we're not using JSON credentials
-
     try:
-        # Authorize without JSON credentials
+        # Authorize without any credentials (assuming the sheet is publicly accessible)
         client = gspread.authorize(None)
 
         # Open the Google Sheets document by URL
-        sheet = client.open_by_url('https://docs.google.com/spreadsheets/d/1QrvWcnT55mAl2NVi7rpZbdm9AzCsAvrEYRrgpMQQ-_I/edit?gid=0#gid=0')
+        sheet_url = 'https://docs.google.com/spreadsheets/d/1QrvWcnT55mAl2NVi7rpZbdm9AzCsAvrEYRrgpMQQ-_I/edit?gid=0#gid=0'
+        sheet = client.open_by_url(sheet_url)
         
         # Select the worksheet by name
         worksheet = sheet.worksheet(sheet_name)
@@ -193,7 +193,7 @@ def write_to_google_sheets(data, sheet_name):
         worksheet.append_row(row_data)
 
         print(f"Data successfully written to Google Sheets '{sheet_name}'")
-    
+
     except APIError as e:
         print(f"Error writing to Google Sheets: {e}")
 
