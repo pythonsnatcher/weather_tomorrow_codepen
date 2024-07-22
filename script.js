@@ -96,17 +96,17 @@ function displayWeatherData(data) {
     
     // Object mapping weather descriptions to placeholder image URLs
     const weatherImages = {
-      'Sunny intervals and a gentle breeze': 'https://i.imgur.com/UcBQXTq.png',
-      'Sunny intervals and light winds': 'https://i.imgur.com/UcBQXTq.png',
-      'Light rain and a gentle breeze': 'https://i.imgur.com/pX968i5.png',
-      'Light rain and a moderate breeze': 'https://i.imgur.com/pX968i5.png',
-      'Light rain showers and a moderate breeze': 'https://i.imgur.com/pX968i5.png',
-      'Light rain showers and a gentle breeze': 'https://i.imgur.com/pX968i5.png',
-      'Thundery showers and a gentle breeze': 'https://i.imgur.com/08Z0Uf1.png',
-      'Light cloud and a gentle breeze': 'https://i.imgur.com/3JUSp0q.png',
-      'Light cloud and a moderate breeze': 'https://i.imgur.com/3JUSp0q.png',
-      'Snow': 'https://i.imgur.com/lmtEMRu.png',
-      'Sunny and a gentle breeze': 'https://i.imgur.com/33SrH2A.png'
+      'Sunny intervals and a gentle breeze': 'images/images_weather_tomorrow/weather_description/sun_cloud.png',
+      'Sunny intervals and light winds': 'images/images_weather_tomorrow/weather_description/sun_cloud.png',
+      'Light rain and a gentle breeze': 'images/images_weather_tomorrow/weather_description/light_rain.png',
+      'Light rain and a moderate breeze': 'images/images_weather_tomorrow/weather_description/light_rain.png',
+      'Light rain showers and a moderate breeze': 'images/images_weather_tomorrow/weather_description/light_rain.png',
+      'Light rain showers and a gentle breeze': 'images/images_weather_tomorrow/weather_description/light_rain.png',
+      'Thundery showers and a gentle breeze': 'images/images_weather_tomorrow/weather_description/thunder.png',
+      'Light cloud and a gentle breeze': 'images/images_weather_tomorrow/weather_description/clouds.png',
+      'Light cloud and a moderate breeze': 'images/images_weather_tomorrow/weather_description/clouds.png',
+      'Snow': 'images/images_weather_tomorrow/weather_description/snow.png',
+      'Sunny and a gentle breeze': 'images/images_weather_tomorrow/weather_description/sun.png'
     };
 
     // Default image URL for weather conditions not found in weatherImages
