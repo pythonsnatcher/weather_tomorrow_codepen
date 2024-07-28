@@ -107,6 +107,7 @@ function displayWeatherData(data) {
       'Light cloud and a gentle breeze': 'images/images_weather_tomorrow/weather_description/clouds.png',
       'Light cloud and a moderate breeze': 'images/images_weather_tomorrow/weather_description/clouds.png',
       'Snow': 'images/images_weather_tomorrow/weather_description/snow.png',
+      'Sunny and light winds': 'images/images_weather_tomorrow/weather_description/sun.png',
       'Sunny and a gentle breeze': 'images/images_weather_tomorrow/weather_description/sun.png'
     };
 
