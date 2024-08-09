@@ -97,6 +97,7 @@ function displayWeatherData(data) {
     // Object mapping weather descriptions to placeholder image URLs
     const weatherImages = {
       'Sunny intervals and a gentle breeze': 'images/images_weather_tomorrow/weather_description/sun_cloud.png',
+      'Sunny intervals and a moderate breeze': 'images/images_weather_tomorrow/weather_description/sun_cloud.png',
       'Sunny intervals and light winds': 'images/images_weather_tomorrow/weather_description/sun_cloud.png',
       'Light rain and a gentle breeze': 'images/images_weather_tomorrow/weather_description/light_rain.png',
       'Light rain and a moderate breeze': 'images/images_weather_tomorrow/weather_description/light_rain.png',
