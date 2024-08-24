@@ -5,7 +5,7 @@ on:
     types:
       - opened
   schedule:
-    - cron: '0 18 * * *'  # Schedule to run every day at 1 AM UTC (2 AM BST)
+    - cron: '0 */23 * * *'  # Schedule to run every day at 1 AM UTC (2 AM BST)
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
