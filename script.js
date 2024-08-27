@@ -99,6 +99,7 @@ function displayWeatherData(data) {
       'Sunny intervals and a gentle breeze': 'images/images_weather_tomorrow/weather_description/sun_cloud.png',
       'Sunny intervals and a moderate breeze': 'images/images_weather_tomorrow/weather_description/sun_cloud.png',
       'Sunny intervals and light winds': 'images/images_weather_tomorrow/weather_description/sun_cloud.png',
+      'Sunny and a moderate breeze': 'images/images_weather_tomorrow/weather_description/sun_cloud.png',
       'Light rain and a gentle breeze': 'images/images_weather_tomorrow/weather_description/light_rain.png',
       'Light rain and a moderate breeze': 'images/images_weather_tomorrow/weather_description/light_rain.png',
       'Light rain and light winds': 'images/images_weather_tomorrow/weather_description/light_rain.png',
