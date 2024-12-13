@@ -29,19 +29,22 @@ def weather_com_(url, xpath_expression):
 
 def the_weather_outlook(url):
     try:
-        xpath_date = '//*[@id="2"]/td[1]/div/text()'
+        # xpath_date = '//*[@id="2"]/td[1]/div/text()'
         xpath_high_temp = '//*[@id="2"]/td[3]/span/text()'
         xpath_wind_speed = '//*[@id="2"]/td[4]/span/text()'
         xpath_humidity = '//*[@id="2"]/td[7]/text()'
         xpath_pressure = '//*[@id="2"]/td[8]/text()'
         xpath_rain_total = '//*[@id="rt2"]/text()'
         xpath_wind_gust = '//*[@id="2"]/td[6]/span/text()'
+        # Get the current date and calculate tomorrow's date
+        tomorrow = datetime.date.today() + datetime.timedelta(days=1)
+        date = tomorrow.strftime('%Y-%m-%d')  # Format the date as 'YYYY-MM-DD'
 
         response = requests.get(url)
         response.encoding = 'utf-8'
         tree = html.fromstring(response.content)
 
-        date = tree.xpath(xpath_date)[0].strip()
+        # date = tree.xpath(xpath_date)[0].strip()
         high_temp_text = tree.xpath(xpath_high_temp)[0].strip()
         wind_speed_text = tree.xpath(xpath_wind_speed)[0].strip()
         humidity_text = tree.xpath(xpath_humidity)[0].strip()
