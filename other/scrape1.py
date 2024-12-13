@@ -41,12 +41,34 @@ def the_weather_outlook(url):
         response.encoding = 'utf-8'
         tree = html.fromstring(response.content)
 
-        date = tree.xpath(xpath_date)[0].strip()
-        high_temp_text = tree.xpath(xpath_high_temp)[0].strip()
-        wind_speed_text = tree.xpath(xpath_wind_speed)[0].strip()
-        humidity_text = tree.xpath(xpath_humidity)[0].strip()
-        pressure_text = tree.xpath(xpath_pressure)[0].strip()
-        rain_total_text = tree.xpath(xpath_rain_total)[0].strip()
+        # Use safe extraction with fallback values
+        date_result = tree.xpath(xpath_date)
+        date = date_result[0].strip() if date_result else "Date not found"
+        print(f"Extracted Date: {date_result} -> {date}")
+        
+        high_temp_result = tree.xpath(xpath_high_temp)
+        high_temp_text = high_temp_result[0].strip() if high_temp_result else "0"
+        print(f"Extracted High Temperature: {high_temp_result} -> {high_temp_text}")
+        
+        wind_speed_result = tree.xpath(xpath_wind_speed)
+        wind_speed_text = wind_speed_result[0].strip() if wind_speed_result else "0"
+        print(f"Extracted Wind Speed: {wind_speed_result} -> {wind_speed_text}")
+        
+        humidity_result = tree.xpath(xpath_humidity)
+        humidity_text = humidity_result[0].strip() if humidity_result else "0%"
+        print(f"Extracted Humidity: {humidity_result} -> {humidity_text}")
+        
+        pressure_result = tree.xpath(xpath_pressure)
+        pressure_text = pressure_result[0].strip() if pressure_result else "0"
+        print(f"Extracted Pressure: {pressure_result} -> {pressure_text}")
+        
+        rain_total_result = tree.xpath(xpath_rain_total)
+        rain_total_text = rain_total_result[0].strip() if rain_total_result else "0mm"
+        print(f"Extracted Rain Total: {rain_total_result} -> {rain_total_text}")
+        
+        wind_gust_result = tree.xpath(xpath_wind_gust)
+        wind_gust_text = wind_gust_result[0].strip() if wind_gust_result else "0"
+        print(f"Extracted Wind Gust: {wind_gust_result} -> {wind_gust_text}")
 
         high_temp = extract_numeric_value(high_temp_text)
         wind_speed = extract_numeric_value(wind_speed_text)
