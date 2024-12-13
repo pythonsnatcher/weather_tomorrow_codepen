@@ -72,6 +72,7 @@ def the_weather_outlook(url):
             'Rain Total (mm)': rain_total,
             'Wind Gust(mph)': wind_gust
         }
+        print("Weather Data:", weather_data)  # Add this print to debug
 
         return weather_data
 
