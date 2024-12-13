@@ -3,6 +3,8 @@ the json credentials file needs to be locally accessible for this script to func
 """
 
 import requests
+import datetime
+
 from lxml import html
 import csv
 import gspread
