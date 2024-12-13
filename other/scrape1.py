@@ -59,7 +59,7 @@ def the_weather_outlook(url):
 
         weather_data = {
             'Location': 'London',
-            'Date': 1,
+            'Date': date,
             'High Temperature(C)': high_temp,
             'Wind Speed(mph)': wind_speed,
             'Humidity(%)': humidity,
@@ -211,8 +211,8 @@ if combined_weather_data:
         'Wind Speed(mph)', 'Wind Gust(mph)', 'Chance of Rain(%)', 'Rain Total (mm)',
         'Humidity(%)', 'Pressure(mb)', 'Pollen', 'UV', 'Sunrise', 'Sunset', 'Moon Phase',
     ]
-    for field in fieldnames:
-        print(f"{field}: {combined_weather_data[field]}")
+    # for field in fieldnames:
+        # print(f"{field}: {combined_weather_data[field]}")
 
     csv_file_path = "weather_tomorrow.csv"
     with open(csv_file_path, mode='w', newline='') as file:
