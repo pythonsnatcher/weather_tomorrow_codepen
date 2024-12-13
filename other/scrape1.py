@@ -45,6 +45,7 @@ def the_weather_outlook(url):
         response = requests.get(url)
         response.encoding = 'utf-8'
         tree = html.fromstring(response.content)
+        print("Response received successfully")  # Debugging line
 
         # date = tree.xpath(xpath_date)[0].strip()
         high_temp_text = tree.xpath(xpath_high_temp)[0].strip()
